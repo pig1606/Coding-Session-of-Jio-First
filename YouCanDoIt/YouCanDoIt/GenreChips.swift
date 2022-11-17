@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GenreChips: View {
     
-    @State var text = ""
     @State var selected = false
     @State var textColor: Color = .reds
     @State var capsuleColor: Color = .blues
@@ -20,9 +19,9 @@ struct GenreChips: View {
     var body: some View {
         
         ScrollView(.horizontal){
-            ForEach(chips.indices){ index in
+            ForEach(chips.indices, id: \.self){ index in
                 HStack{
-                    ForEach(chips[index].indices){ chipIndex in
+                    ForEach(chips[index].indices, id: \.self){ chipIndex in
                         Text(chips[index][chipIndex].chipText)
                             .padding(.horizontal, 8)
                             .padding(.vertical, 8)
