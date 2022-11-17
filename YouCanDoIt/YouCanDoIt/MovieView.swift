@@ -9,16 +9,22 @@ import SwiftUI
 
 struct MovieView: View {
     
-    init() {
-        let navBarAppearance = UINavigationBar.appearance()
-        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {
                 Color("Blue")
                     .ignoresSafeArea()
+                
+                Text("")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Text("Filog")
+                                .fontWeight(.black)
+                                .foregroundColor(.white)
+                                .font(.system(size: 20))
+                        }
+                    }
                 
                 VStack{
                     GenreChips()
@@ -35,8 +41,6 @@ struct MovieView: View {
                                 }
                             }
                         }
-                        Text("")
-                            .navigationBarTitle("Filog", displayMode: .inline)
                     }
                 }
             }
