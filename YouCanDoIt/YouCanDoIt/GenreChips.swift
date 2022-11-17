@@ -11,8 +11,8 @@ struct GenreChips: View {
     
     @State var text = ""
     @State var selected = false
-    @State var textColor: Color = Color("Red")
-    @State var capsuleColor: Color = Color("Blue")
+    @State var textColor: Color = .reds
+    @State var capsuleColor: Color = .blues
     @State var chips: [[ChipData]] = [
         [ChipData(chipText: "All"), ChipData(chipText: "Sci-Fi"), ChipData(chipText: "Action"), ChipData(chipText: "Drama"), ChipData(chipText: "Thriller"), ChipData(chipText: "Music"), ChipData(chipText: "Adventure")]
     ]
@@ -30,7 +30,7 @@ struct GenreChips: View {
                             .fontWeight(.black)
                             .font(.system(size: 14))
                             .background(Capsule()
-                                .strokeBorder(Color("Red"), lineWidth: 1)
+                                .strokeBorder(Color.reds, lineWidth: 1)
                                 .background(Capsule().foregroundColor(capsuleColor)))
                             .lineLimit(1)
                             .onTapGesture {
@@ -47,10 +47,10 @@ struct GenreChips: View {
     func modifyColors() {
         if selected {
             textColor = .white
-            capsuleColor = Color("Red")
+            capsuleColor = .reds
         } else {
-            textColor = Color("Red")
-            capsuleColor = Color("Blue")
+            textColor = .reds
+            capsuleColor = .blues
         }
     }
 }
