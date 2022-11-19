@@ -37,8 +37,11 @@ struct MovieCardView: View {
     var movieImage: String
     var movieTitle: String
     var movieDescription: String
+    var moviePreference: String
     
     var body: some View {
+        
+        
         VStack() {
             Image(movieImage)
                 .resizable()
@@ -59,8 +62,9 @@ struct MovieCardView: View {
                     .frame(width: 36, height: 36)
                     .offset(y: -57)
                 
-                Image(systemName: "heart.fill")
+                Image(systemName: moviePreference)
                     .foregroundColor(Color("Red"))
+                    .font(.system(size: 20))
                     .offset(y: -57)
                 
                 VStack{
@@ -80,6 +84,6 @@ struct MovieCardView: View {
 
 struct MovieCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCardView(movieImage: "Poster0", movieTitle: "Knives Out", movieDescription: "Who hid the knife?")
+        MovieCardView(movieImage: "Poster0", movieTitle: "Knives Out", movieDescription: "Who hid the knife?", moviePreference: "heart.fill")
     }
 }

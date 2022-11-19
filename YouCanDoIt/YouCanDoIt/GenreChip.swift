@@ -24,35 +24,22 @@ struct GenreChip: View {
 
 struct Subview: View {
     @State var selected = false
-    @State var textColor: Color = .reds
-    @State var capsuleColor: Color = .blues
     let chip: String
     var body: some View {
         ZStack {
             Capsule()
                 .strokeBorder(Color.reds, lineWidth: 1)
-                .background(Capsule().foregroundColor(capsuleColor))
+                .background(Capsule().foregroundColor(selected ? .reds : .blues))
                 .frame(width: 70, height: 32)
             
             Text("\(chip)")
-                .foregroundColor(textColor)
+                .foregroundColor(selected ? .white : .reds)
                 .fontWeight(.black)
                 .font(.system(size: 14))
         }
         .padding(.vertical, 8)
         .onTapGesture {
             self.selected.toggle()
-            self.modifyColors()
-        }
-    }
-    
-    func modifyColors() {
-        if selected {
-            textColor = .white
-            capsuleColor = .reds
-        } else {
-            textColor = .reds
-            capsuleColor = .blues
         }
     }
 }
