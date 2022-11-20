@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GenreChip: View {
+struct GenreChip: View, Hashable {
     let genre: [String] = ["All", "Sci-Fi", "Action", "Drama", "Thriller", "Music", "Adventure"]
     
     var body: some View {
@@ -29,7 +29,7 @@ struct Subview: View {
         ZStack {
             Capsule()
                 .strokeBorder(Color.reds, lineWidth: 1)
-                .background(Capsule().foregroundColor(selected ? .reds : .blues))
+                .background(Capsule().foregroundColor(selected ? .reds : .clear))
                 .frame(width: 70, height: 32)
             
             Text("\(chip)")

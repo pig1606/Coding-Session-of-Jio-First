@@ -27,7 +27,7 @@ struct MovieView: View {
                     }
                 
                 VStack{
-                    GenreChip()
+                    GenreButton()
                     ZStack() {
                         ScrollView{
                             HStack{

@@ -10,7 +10,7 @@ import SwiftUI
 struct CornerRadiusShape: Shape {
     var radius = CGFloat.infinity
     var corners = UIRectCorner.allCorners
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
@@ -20,7 +20,7 @@ struct CornerRadiusShape: Shape {
 struct CornerRadiusStyle: ViewModifier {
     var radius: CGFloat
     var corners: UIRectCorner
-
+    
     func body(content: Content) -> some View {
         content
             .clipShape(CornerRadiusShape(radius: radius, corners: corners))
@@ -41,43 +41,48 @@ struct MovieCardView: View {
     
     var body: some View {
         
-        
-        VStack() {
-            Image(movieImage)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 168, height: 248)
-                .clipped()
-                .cornerRadius(radius: 8, corners: [.allCorners])
+        ZStack{
             
-            ZStack{
-                Rectangle()
-                    .fill(Color.white)
-                    .frame(width: 168, height: 115)
-                    .cornerRadius(radius: 8, corners: [.bottomLeft])
-                    .cornerRadius(radius: 8, corners: [.bottomRight])
+            Color.blues
+                .ignoresSafeArea()
+            
+            VStack() {
+                Image(movieImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 168, height: 248)
+                    .clipped()
+                    .cornerRadius(radius: 8, corners: [.allCorners])
                 
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: 36, height: 36)
-                    .offset(y: -57)
-                
-                Image(systemName: moviePreference)
-                    .foregroundColor(Color("Red"))
-                    .font(.system(size: 20))
-                    .offset(y: -57)
-                
-                VStack{
-                    Text(movieTitle)
-                        .font(.system(size: 18))
-                        .fontWeight(.black)
+                ZStack{
+                    Rectangle()
+                        .fill(Color.white)
+                        .frame(width: 168, height: 115)
+                        .cornerRadius(radius: 8, corners: [.bottomLeft])
+                        .cornerRadius(radius: 8, corners: [.bottomRight])
                     
-                    Text(movieDescription)
-                        .font(.system(size: 14))
-                        .fontWeight(.light)
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 36, height: 36)
+                        .offset(y: -57)
+                    
+                    Image(systemName: moviePreference)
+                        .foregroundColor(Color("Red"))
+                        .font(.system(size: 20))
+                        .offset(y: -57)
+                    
+                    VStack{
+                        Text(movieTitle)
+                            .font(.system(size: 18))
+                            .fontWeight(.black)
+                        
+                        Text(movieDescription)
+                            .font(.system(size: 14))
+                            .fontWeight(.light)
+                    }
                 }
+                .padding(.top, -30)
             }
-            .padding(.top, -30)
         }
     }
 }
