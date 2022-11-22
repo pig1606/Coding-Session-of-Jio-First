@@ -26,18 +26,19 @@ struct MovieCardView: View {
                     .clipped()
                     .cornerRadius(radius: 8, corners: [.allCorners])
                 
-                ZStack{
-                    VStack(alignment: .center, spacing: 4){
+                ZStack(alignment: .top){
+                    VStack(spacing: 4){
                         Text(movieTitle)
                             .multilineTextAlignment(.center)
                             .font(.system(size: 18))
                             .fontWeight(.black)
-
+                        
                         Text(movieDescription)
                             .multilineTextAlignment(.center)
                             .font(.system(size: 14))
                             .fontWeight(.light)
                     }
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(20)
                     .background(Rectangle()
                         .foregroundColor(.white)
@@ -54,7 +55,7 @@ struct MovieCardView: View {
                             .foregroundColor(Color("Red"))
                             .font(.system(size: 20))
                     }
-                    .offset(y: -30)
+                    .offset(y: -15)
                 }
                 .offset(y: -25)
             }
