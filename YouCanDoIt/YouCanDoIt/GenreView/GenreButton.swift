@@ -13,7 +13,7 @@ struct GenreButton: View {
     @State public var buttonSelected: Int?
     
     var body: some View {
-        ScrollView (.horizontal) {
+        ScrollView (.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(0..<buttons.count, id: \.self) { button in
                     Button(action: {
@@ -27,11 +27,9 @@ struct GenreButton: View {
                             
                             Text("\(self.buttons[button])")
                                 .foregroundColor(self.buttonSelected == button ? .white : .reds)
-                                .fontWeight(.black)
-                                .font(.system(size: 14))
+                                .font(.system(size: 14, weight: .black))
                         }
-                        .padding(.vertical, 5)
-                        .padding(.top, 5)
+                        .padding([.vertical, .top], 5)
                     }
                 }
             }

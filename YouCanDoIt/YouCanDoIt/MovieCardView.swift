@@ -32,13 +32,11 @@ struct MovieCardView: View {
                     VStack(spacing: 6){
                         Text(movie.title)
                             .multilineTextAlignment(.center)
-                            .font(.system(size: 18))
-                            .fontWeight(.black)
+                            .font(.system(size: 18, weight: .black))
                         
                         Text(movie.description)
                             .multilineTextAlignment(.center)
-                            .font(.system(size: 14))
-                            .fontWeight(.light)
+                            .font(.system(size: 14, weight: .light))
                     }
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(15)

@@ -34,8 +34,7 @@ struct Subview: View {
             
             Text("\(chip)")
                 .foregroundColor(selected ? .white : .reds)
-                .fontWeight(.black)
-                .font(.system(size: 14))
+                .font(.system(size: 14, weight: .black))
         }
         .padding(.vertical, 8)
         .onTapGesture {

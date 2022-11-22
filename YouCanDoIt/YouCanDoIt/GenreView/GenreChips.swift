@@ -23,11 +23,9 @@ struct GenreChips: View {
                 HStack{
                     ForEach(chips[index].indices, id: \.self){ chipIndex in
                         Text(chips[index][chipIndex].chipText)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 8)
+                            .padding([.vertical, .horizontal], 8)
                             .foregroundColor(textColor)
-                            .fontWeight(.black)
-                            .font(.system(size: 14))
+                            .font(.system(size: 14, weight: .black))
                             .background(Capsule()
                                 .strokeBorder(Color.reds, lineWidth: 1)
                                 .background(Capsule().foregroundColor(capsuleColor)))

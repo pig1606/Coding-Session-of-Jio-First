@@ -17,31 +17,30 @@ struct MovieView: View {
                 Color.blues
                     .ignoresSafeArea()
                 
-                Text("")
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            Text("Filog")
-                                .fontWeight(.black)
-                                .foregroundColor(.white)
-                                .font(.system(size: 20))
-                        }
-                    }
-                
                 VStack{
                     GenreButton()
-                        ScrollView{
-                                VStack{
-                                    ForEach(movie[0...3]) { item in
-                                        MovieCardView(movie: item)
-                                    }
-                                }
+                    ScrollView{
+                        VStack{
+                            ForEach(movie[0...3], id: \.self) { item in
+                                NavigationLink(destination: MovieDetailView(movie: item)){
+                                    MovieCardView(movie: item)
+                                }.buttonStyle(PlainButtonStyle())
                             }
                         }
                     }
                 }
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Text("Filog")
+                            .foregroundColor(.white)
+                            .font(.system(size: 20, weight: .black))
+                    }
+                }
             }
         }
+    }
+}
 
 
 struct MovieView_Previews: PreviewProvider {
