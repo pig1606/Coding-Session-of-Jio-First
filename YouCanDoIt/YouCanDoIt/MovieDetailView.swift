@@ -8,47 +8,52 @@
 import SwiftUI
 
 struct MovieDetailView: View {
+    var movie: Movie
+    
     var body: some View {
         ZStack {
             Color("Blue")
                 .ignoresSafeArea()
             
-            VStack() {
-                Image("Poster0")
+            VStack{
+                Image(movie.image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 358, height: 647.81)
+                    .frame(width: 168, height: 248)
                     .clipped()
                     .cornerRadius(radius: 8, corners: [.allCorners])
                 
-                ZStack{
-                    Rectangle()
-                        .fill(Color.white)
-                        .frame(width: 358, height: 170.48)
-                        .cornerRadius(radius: 8, corners: [.bottomLeft])
-                        .cornerRadius(radius: 8, corners: [.bottomRight])
-                    
+                ZStack(alignment: .top){
                     Circle()
                         .fill(Color.white)
-                        .frame(width: 76, height: 71)
-                        .offset(y: -80)
+                        .frame(width: 36, height: 36)
+                        .offset(y: -15)
                     
-                    Image(systemName: "heart.fill")
-                        .foregroundColor(Color("Red"))
-                        .font(.system(size: 40, weight: .light))
-                        .offset(y: -80)
-                    
-                    VStack{
-                        Text("Knives Out")
-                            .font(.system(size: 36))
+                    VStack(spacing: 6){
+                        Text(movie.title)
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 18))
                             .fontWeight(.black)
                         
-                        Text("Who hid the knife?")
-                            .font(.system(size: 24))
+                        Text(movie.description)
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 14))
                             .fontWeight(.light)
                     }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(15)
+                    .frame(width: 168)
+                    .background(Rectangle()
+                        .foregroundColor(.white)
+                        .cornerRadius(radius: 8, corners: [.bottomLeft])
+                        .cornerRadius(radius: 8, corners: [.bottomRight]))
+                        
+                        Image(systemName: movie.preference)
+                            .foregroundColor(Color("Red"))
+                            .font(.system(size: 20))
+                            .offset(y: -7)
                 }
-                .padding(.top, -30)
+                .offset(y: -25)
             }
         }
     }
@@ -56,6 +61,6 @@ struct MovieDetailView: View {
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView()
+        MovieDetailView(movie: movieData[0])
     }
 }

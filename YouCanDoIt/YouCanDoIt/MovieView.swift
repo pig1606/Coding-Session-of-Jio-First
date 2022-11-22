@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MovieView: View {
     
+    var movie: [Movie] = movieData
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -28,16 +30,11 @@ struct MovieView: View {
                 
                 VStack{
                     GenreButton()
-                    ZStack() {
                         ScrollView{
-                            HStack{
                                 VStack{
-                                        MovieCardView(movieImage: "Poster0", movieTitle: "Knives Out", movieDescription: "Who hid the knife?", moviePreference: "heart.fill")
-                                    MovieCardView(movieImage: "Poster2", movieTitle: "The Amazing Spider-Man 2", movieDescription: "Romance?", moviePreference: "heart.slash")
-                                }
-                                VStack{
-                                    MovieCardView(movieImage: "Poster1", movieTitle: "Kill Your \n Darlings", movieDescription: "Kill your darlings to save yourself, Lucien Carr", moviePreference: "heart.fill")
-                                    MovieCardView(movieImage: "Poster3", movieTitle: "Tenet", movieDescription: "Not time inversion but mind inversion", moviePreference: "heart.fill")
+                                    ForEach(movie[0...3]) { item in
+                                        MovieCardView(movie: item)
+                                    }
                                 }
                             }
                         }
@@ -45,11 +42,10 @@ struct MovieView: View {
                 }
             }
         }
-    }
-}
+
 
 struct MovieView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieView()
+        MovieView(movie: movieData)
     }
 }
