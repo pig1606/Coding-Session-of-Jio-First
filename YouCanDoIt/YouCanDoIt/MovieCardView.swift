@@ -7,32 +7,6 @@
 
 import SwiftUI
 
-struct CornerRadiusShape: Shape {
-    var radius = CGFloat.infinity
-    var corners = UIRectCorner.allCorners
-    
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
-}
-
-struct CornerRadiusStyle: ViewModifier {
-    var radius: CGFloat
-    var corners: UIRectCorner
-    
-    func body(content: Content) -> some View {
-        content
-            .clipShape(CornerRadiusShape(radius: radius, corners: corners))
-    }
-}
-
-extension View {
-    func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
-        ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
-    }
-}
-
 struct MovieCardView: View {
     var movieImage: String
     var movieTitle: String
@@ -40,13 +14,11 @@ struct MovieCardView: View {
     var moviePreference: String
     
     var body: some View {
-        
         ZStack{
-            
             Color.blues
                 .ignoresSafeArea()
             
-            VStack() {
+            VStack{
                 Image(movieImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -55,33 +27,36 @@ struct MovieCardView: View {
                     .cornerRadius(radius: 8, corners: [.allCorners])
                 
                 ZStack{
-                    Rectangle()
-                        .fill(Color.white)
-                        .frame(width: 168, height: 115)
-                        .cornerRadius(radius: 8, corners: [.bottomLeft])
-                        .cornerRadius(radius: 8, corners: [.bottomRight])
-                    
-                    Circle()
-                        .fill(Color.white)
-                        .frame(width: 36, height: 36)
-                        .offset(y: -57)
-                    
-                    Image(systemName: moviePreference)
-                        .foregroundColor(Color("Red"))
-                        .font(.system(size: 20))
-                        .offset(y: -57)
-                    
-                    VStack{
+                    VStack(alignment: .center, spacing: 4){
                         Text(movieTitle)
+                            .multilineTextAlignment(.center)
                             .font(.system(size: 18))
                             .fontWeight(.black)
-                        
+
                         Text(movieDescription)
+                            .multilineTextAlignment(.center)
                             .font(.system(size: 14))
                             .fontWeight(.light)
                     }
+                    .padding(20)
+                    .background(Rectangle()
+                        .foregroundColor(.white)
+                        .frame(width: 168)
+                        .cornerRadius(radius: 8, corners: [.bottomLeft])
+                        .cornerRadius(radius: 8, corners: [.bottomRight]))
+                    
+                    ZStack{
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 36, height: 36)
+                        
+                        Image(systemName: moviePreference)
+                            .foregroundColor(Color("Red"))
+                            .font(.system(size: 20))
+                    }
+                    .offset(y: -30)
                 }
-                .padding(.top, -30)
+                .offset(y: -25)
             }
         }
     }
@@ -89,6 +64,6 @@ struct MovieCardView: View {
 
 struct MovieCardView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCardView(movieImage: "Poster0", movieTitle: "Knives Out", movieDescription: "Who hid the knife?", moviePreference: "heart.fill")
+        MovieCardView(movieImage: "Poster1", movieTitle: "Kill Your Darlings", movieDescription: "Kill your darlings to save yourself, Lucien Carr", moviePreference: "heart.fill")
     }
 }

@@ -32,8 +32,7 @@ struct MovieView: View {
                         ScrollView{
                             HStack{
                                 VStack{
-                                    NavigationLink(destination: MovieDetailView()) {
-                                        MovieCardView(movieImage: "Poster0", movieTitle: "Knives Out", movieDescription: "Who hid the knife?", moviePreference: "heart.fill")}
+                                        MovieCardView(movieImage: "Poster0", movieTitle: "Knives Out", movieDescription: "Who hid the knife?", moviePreference: "heart.fill")
                                     MovieCardView(movieImage: "Poster2", movieTitle: "The Amazing Spider-Man 2", movieDescription: "Romance?", moviePreference: "heart.slash")
                                 }
                                 VStack{
