@@ -19,15 +19,32 @@ struct MovieView: View {
                 
                 VStack{
                     GenreButton()
-                    ScrollView{
-                        VStack{
-                            ForEach(movie[0...3], id: \.self) { item in
-                                NavigationLink(destination: MovieDetailView(movie: item)){
-                                    MovieCardView(movie: item)
+                    ScrollView {
+                        HStack (alignment: .firstTextBaseline){
+                            VStack{
+                                NavigationLink(destination: MovieDetailView(movie: movieData[0])){
+                                    MovieCardView(movie: movieData[0])
+                                }.buttonStyle(PlainButtonStyle())
+                                
+                                NavigationLink(destination: MovieDetailView(movie: movieData[2])){
+                                    MovieCardView(movie: movieData[2])
+                                }.buttonStyle(PlainButtonStyle())
+                                    .offset(y:-30)
+                            }
+                            
+                            VStack{
+                                NavigationLink(destination: MovieDetailView(movie: movieData[1])){
+                                    MovieCardView(movie: movieData[1])
+                                }.buttonStyle(PlainButtonStyle())
+                                
+                                NavigationLink(destination: MovieDetailView(movie: movieData[3])){
+                                    MovieCardView(movie: movieData[3])
                                 }.buttonStyle(PlainButtonStyle())
                             }
                         }
+                        .offset(y: -20)
                     }
+                    .padding()
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

@@ -29,7 +29,7 @@ struct GenreButton: View {
                                 .foregroundColor(self.buttonSelected == button ? .white : .reds)
                                 .font(.system(size: 14, weight: .black))
                         }
-                        .padding([.vertical, .top], 5)
+                        .padding(.top, 5)
                     }
                 }
             }
